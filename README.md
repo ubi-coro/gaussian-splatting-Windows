@@ -94,6 +94,8 @@ The folder will download to the root of our command line prompt with the name "G
 
 To install the code that you pulled from GitHub, you will need to create a Conda environment that includes all of the compailed code for running. Open command prompt and enter these lines below one at a time. The second line will compile the code which can take 10 minutes or longer. The last line will "activate" the conda environment. You will need to enter ```conda activate gaussian_splatting``` at the start of each session you plan to optimize 3D Gaussian Splatting.
 
+> **PyTorch 2.1.0** is confirmed to be compatible with CUDA 11.8
+
 ```shell
 SET DISTUTILS_USE_SDK=1
 conda env create --file environment.yml
