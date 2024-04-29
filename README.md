@@ -157,7 +157,7 @@ If you have your own COLMAP dataset without undistortion (e.g., using ```OPENCV`
 ```
 Then run 
 ```shell
-python convert.py -s <location> --skip_matching [--resize] #If not resizing, ImageMagick is not needed
+python convert.py -s <location> --skip_matching [--resize] [--no_gpu] #If not resizing, ImageMagick is not needed
 ```
 
 <details>
