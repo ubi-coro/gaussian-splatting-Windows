@@ -3,7 +3,7 @@
 **This is a forked Windows Installation Tutorial and the main codes will not be updated.**
 This forked GitHub project is intended for folks who have little to no command-line knowledge and want to install, train, and view 3D Gaussian Splatting. If you have used Instant NGP, Nerftudio, or other similar command-line-based radiance field projects, most likely you have already installed some or all of the dependencies required for this project.
 
-I created a [**walkthrough video**](https://youtu.be/UXtuigy_wYc?si=93d4d1iP30NMgfYm)  to complement the installation instructions. You can watch it independently or with this project page as a reference.
+I created a [**walkthrough video**](https://youtu.be/UXtuigy_wYc?si=93d4d1iP30NMgfYm) to complement the installation instructions. You can watch it independently or with this project page as a reference.
 
 The section below is from the original GitHub page. Jump down to [**Overview**](#overview) to get started.
 
@@ -71,7 +71,7 @@ Here is what the workflow looks like:
 
 ## Requirements
 
-This is the hardware and software required to run 3D Gaussian Splatting for Real-Time Radiance Fields. Technically, the viewer has much smaller requirements compared to the the optimizer. I decided to list the 
+This is the hardware and software required to run 3D Gaussian Splatting for Real-Time Radiance Fields. Technically, the viewer has much smaller requirements compared to the optimizer. I decided to list the 
 
 ### Hardware
 
@@ -81,36 +81,36 @@ This is the hardware and software required to run 3D Gaussian Splatting for Real
 
 ### Software
 
-This is the sofware dependencies you will need installed prior to installing the project. Many of these dependencies are shared with other NeRF projects.
+These are the software dependencies you will need installed before installing the project. Many of these dependencies are shared with other NeRF projects.
 
-- **Git** - You will need this to pull the code from GitHub. You can download it [**here**](https://git-scm.com/downloads). Follow default installation instructions. You can test to see if you have it already installed by typing `git --version` into command prompt
+- **Git** - You will need this to pull the code from GitHub. You can download it [**here**](https://git-scm.com/downloads). Follow default installation instructions. You can test to see if you have it already installed by typing `git --version` into the command prompt.
 - **Conda** - I recommend using [**Anaconda**](https://www.anaconda.com/download) because it's easy to install and manage environments in the future. [**MiniConda**](https://docs.conda.io/en/latest/miniconda.html) is a great lightweight alternative.
-- **CUDA Toolkit** - this was tested with 11.8. Ensure you are not running 11.6 or 12+. You can download CUDA Toolkit [**here**](https://developer.nvidia.com/cuda-toolkit-archive) You can check which version of CUDA Toolkit you have installed by typing `nvcc --version` into command prompt.
+- **CUDA Toolkit** - this was tested with 11.8. Ensure you are not running 11.6 or 12+. You can download the CUDA Toolkit [**here**](https://developer.nvidia.com/cuda-toolkit-archive) You can check which version of CUDA Toolkit you have installed by typing `nvcc --version` into the command prompt.
 - **Visual Studio 2019 or newer** - You can download and install it [**here**](https://visualstudio.microsoft.com/vs/older-downloads/). Make sure you add **Desktop Development with C++** when installing
 
   ![VS_Option](assets/VS_Option.png)
 
 - **COLMAP** - Use the Windows binary, it's easy! You can download it [**here**](https://github.com/colmap/colmap/releases)
-- **ImageMagik** - This is for preparing your images. Download it [**here**](https://imagemagick.org/script/download.php)
+- **ImageMagick** - This is for preparing your images. Download it [**here**](https://imagemagick.org/script/download.php)
 - **FFMPEG** - Use this to extract images from video. Download it [**here**](https://ffmpeg.org/download.html)
 
 
 ## Cloning the Repository
 
-You will need to pull a copy of the code from GitHub. You will do this by using Git which was pre-installed during the dependencies section of this tutorial. You can also use GitHub desktop to clone the repository. Follow these steps to clone the repository:
+You will need to pull a copy of the code from GitHub. You will do this by using Git which was pre-installed during the dependencies section of this tutorial. You can also use GitHub Desktop to clone the repository. Follow these steps to clone the repository:
 
 1. Open Windows Command Prompt by tying "cmd" into your search bar.
-2. Copy the code below into command prompt and press enter
+2. Copy the code below into the command prompt and press enter
 
 ```shell
 git clone https://github.com/graphdeco-inria/gaussian-splatting --recursive
 ```
 
-The folder will download to the root of our command line prompt with the name "Gaussian-Splatting". Typically in your `C:\User\<username>` folder. For example, on my PC the folder is now located at C:User/Jonat/Guassian-Splatting
+The folder will download to the root of our command line prompt with the name "Gaussian-Splatting". Typically in your `C:\User\<username>` folder. For example, on my PC the folder is now located at C:\User\Jonat\Gaussian-Splatting
 
 ## Installing the Optimizer
 
-To install the code that you pulled from GitHub, you will need to create a Conda environment that includes all of the compailed code for running. Open command prompt and enter these lines below one at a time. The second line will compile the code which can take 10 minutes or longer. The last line will "activate" the conda environment. You will need to enter `conda activate gaussian_splatting` at the start of each session you plan to optimize 3D Gaussian Splatting.
+To install the code that you pulled from GitHub, you will need to create a Conda environment that includes all of the compiled code for running. Open the command prompt and enter these lines below one at a time. The second line will compile the code which can take 10 minutes or longer. The last line will "activate" the conda environment. You will need to enter `conda activate gaussian_splatting` at the start of each session you plan to optimize 3D Gaussian Splatting.
 
 > **PyTorch 2.1.0** is confirmed to be compatible with CUDA 11.8
 
@@ -147,7 +147,7 @@ Our COLMAP loaders expect the following dataset structure in the source path:
         |---points3D.bin
 ```
 
-For rasterization, the camera models must be either a SIMPLE_PINHOLE or PINHOLE camera. We provide a converter script `convert.py`, to extract undistorted images and SfM information from input images. Optionally, you can use ImageMagick to resize the undistorted images. This rescaling is similar to MipNeRF360, i.e., it creates images with 1/2, 1/4 and 1/8 the original resolution in corresponding folders. To use them, please first install a recent version of COLMAP (ideally CUDA-powered) and ImageMagick. Put the images you want to use in a directory `<path>/input`.
+For rasterization, the camera models must be either a SIMPLE_PINHOLE or a PINHOLE camera. We provide a converter script `convert.py`, to extract undistorted images and SfM information from input images. Optionally, you can use ImageMagick to resize the undistorted images. This rescaling is similar to MipNeRF360, i.e., it creates images with 1/2, 1/4 and 1/8 of the original resolution in corresponding folders. To use them, please first install a recent version of COLMAP (ideally CUDA-powered) and ImageMagick. Put the images you want to use in a directory `<path>/input`.
 
 ```
 <path>
@@ -167,7 +167,7 @@ python convert.py -s <path> [--resize --no_gpu]
 
 Alternatively, you can use the optional parameters `--colmap_executable` and `--magick_executable` to point to the respective paths. Please note that on Windows, the executable should point to the COLMAP `.bat` file that takes care of setting the execution environment. Once done, `<path>` will contain the expected COLMAP data set structure with undistorted, resized input images, in addition to your original images and some temporary (distorted) data in the directory `distorted`.
 
-If you have your own COLMAP dataset without undistortion (e.g., using `OPENCV` camera), you can try to just run the last part of the script: Put the images in `input` and the COLMAP info in a subdirectory `distorted`:
+If you have your own COLMAP dataset without undistortion (e.g., using `OpenCV` camera), you can try to just run the last part of the script: Put the images in `input` and the COLMAP info in a subdirectory `distorted`:
 
 ```
 <path>
@@ -200,7 +200,7 @@ python convert.py -s <path> --skip_matching [--resize --no_gpu]
   #### --source_path / -s
   Location of the inputs.
   #### --camera 
-  Which camera model to use for the early matching steps, `OPENCV` by default.
+  Which camera model to use for the early matching steps, `OPENCV` by default?
   #### --resize
   Flag for creating resized versions of input images.
   #### --colmap_executable
@@ -211,7 +211,7 @@ python convert.py -s <path> --skip_matching [--resize --no_gpu]
 
 ## Optimizer
 
-The optimizer uses PyTorch and CUDA extensions in a Python environment to produce trained models. These trained models are what you view in the real-time viewer. This is where you "processes your dataset" into 3D Guassian Splats.
+The optimizer uses PyTorch and CUDA extensions in a Python environment to produce trained models. These trained models are what you view in the real-time viewer. This is where you "processes your dataset" into 3D Gaussian Splats.
 
 ### Running
 
@@ -227,17 +227,17 @@ python train.py -s <path to COLMAP or NeRF Synthetic dataset>
   #### --source_path / -s
   Path to the source directory containing a COLMAP or Synthetic NeRF data set.
   #### --model_path / -m 
-  Path where the trained model should be stored (`output/<random>` by default).
+  The path where the trained model should be stored (`output/<random>` by default).
   #### --images / -i
   Alternative subdirectory for COLMAP images (`images` by default).
   #### --eval
   Add this flag to use a MipNeRF360-style training/test split for evaluation.
   #### --resolution / -r
-  Specifies resolution of the loaded images before training. If provided `1, 2, 4` or `8`, uses original, 1/2, 1/4 or 1/8 resolution, respectively. For all other values, rescales the width to the given number while maintaining image aspect. **If not set and input image width exceeds 1.6K pixels, inputs are automatically rescaled to this target.**
+  Specifies the resolution of the loaded images before training. If provided `1, 2, 4` or `8`, uses original, 1/2, 1/4 or 1/8 resolution, respectively. For all other values, rescales the width to the given number while maintaining the image aspect. **If not set and the input image width exceeds 1.6K pixels, inputs are automatically rescaled to this target.**
   #### --data_device
   Specifies where to put the source image data, `cuda` by default, recommended to use `cpu` if training on large/high-resolution dataset, will reduce VRAM consumption, but slightly slow down training.
   #### --white_background / -w
-  Add this flag to use white background instead of black (default), e.g., for evaluation of NeRF Synthetic dataset.
+  Add this flag to use a white background instead of black (default), e.g., for evaluation of the NeRF Synthetic dataset.
   #### --sh_degree
   Order of spherical harmonics to be used (no larger than 3). `3` by default.
   #### --convert_SHs_python
@@ -245,11 +245,11 @@ python train.py -s <path to COLMAP or NeRF Synthetic dataset>
   #### --convert_cov3D_python
   Flag to make pipeline compute forward and backward of the 3D covariance with PyTorch instead of ours.
   #### --debug
-  Enables debug mode if you experience erros. If the rasterizer fails, a `dump` file is created that you may forward to us in an issue so we can take a look.
+  Enables debug mode if you experience errors. If the rasterizer fails, a `dump` file is created that you may forward to us in an issue so we can take a look.
   #### --debug_from
   Debugging is **slow**. You may specify an iteration (starting from 0) after which the above debugging becomes active.
   #### --iterations
-  Number of total iterations to train for, `30_000` by default.
+  The number of total iterations to train for, `30_000` by default.
   #### --ip
   IP to start GUI server on, `127.0.0.1` by default.
   #### --port 
@@ -265,7 +265,7 @@ python train.py -s <path to COLMAP or NeRF Synthetic dataset>
   #### --quiet 
   Flag to omit any text written to standard out pipe. 
   #### --feature_lr
-  Spherical harmonics features learning rate, `0.0025` by default.
+  Spherical harmonics feature learning rate, `0.0025` by default.
   #### --opacity_lr
   Opacity learning rate, `0.05` by default.
   #### --scaling_lr
@@ -296,7 +296,7 @@ python train.py -s <path to COLMAP or NeRF Synthetic dataset>
   Percentage of scene extent (0--1) a point must exceed to be forcibly densified, `0.01` by default.
 </details>
 
-Note that similar to MipNeRF360, we target images at resolutions in the 1-1.6K pixel range. For convenience, arbitrary-size inputs can be passed and will be automatically resized if their width exceeds 1600 pixels. We recommend to keep this behavior, but you may force training to use your higher-resolution images by setting `-r 1`.
+Note that similar to MipNeRF360, we target images at resolutions in the 1-1.6K pixel range. For convenience, arbitrary-size inputs can be passed and will be automatically resized if their width exceeds 1600 pixels. We recommend keeping this behavior, but you may force training to use your higher-resolution images by setting `-r 1`.
 
 The MipNeRF360 scenes are hosted by the paper authors [**here**](https://jonbarron.info/mipnerf360/). You can find our SfM data sets for Tanks&Temples and Deep Blending [**here**](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/input/tandt_db.zip). If you do not provide an output model directory (`-m`), trained models are written to folders with randomized unique names inside the `output` directory. At this point, the trained models may be viewed with the real-time viewer (see further below).
 
@@ -306,12 +306,12 @@ We provide two interactive viewers for our method: remote and real-time. Our vie
 
 ### Pre-built Windows Binaries
 
-We provide pre-built binaries for Windows [**here**](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/binaries/viewers.zip). We recommend using them on Windows for an efficient setup, since the building of SIBR involves several external dependencies that must be downloaded and compiled on-the-fly.
+We provide pre-built binaries for Windows [**here**](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/binaries/viewers.zip). We recommend using them on Windows for an efficient setup since the building of SIBR involves several external dependencies that must be downloaded and compiled on the fly.
 
 Simply download the `viewer.zip` file from the links above and extract it.
 
 ### Navigation in SIBR Viewers
-The SIBR interface provides several methods of navigating the scene. By default, you will be started with an FPS navigator, which you can control with `W, A, S, D, Q, E` for camera translation and `I, K, J, L, U, O` for rotation. Alternatively, you may want to use a Trackball-style navigator (select from the floating menu). You can also snap to a camera from the data set with the `Snap to` button or find the closest camera with `Snap to closest`. The floating menues also allow you to change the navigation speed. You can use the `Scaling Modifier` to control the size of the displayed Gaussians, or show the initial point cloud.
+The SIBR interface provides several methods of navigating the scene. By default, you will be started with an FPS navigator, which you can control with `W, A, S, D, Q, E` for camera translation and `I, K, J, L, U, O` for rotation. Alternatively, you may want to use a Trackball-style navigator (select from the floating menu). You can also snap to a camera from the data set with the `Snap to` button or find the closest camera with `Snap to closest`. The floating menus also allow you to change the navigation speed. You can use the `Scaling Modifier` to control the size of the displayed Gaussians or show the initial point cloud.
 
 ### Running the Real-Time Viewer
 
@@ -329,7 +329,7 @@ It should suffice to provide the `-m` parameter pointing to a trained model dire
 
 ![Teaser image](assets/select.png)
 
-In addition to the intial point cloud and the splats, you also have the option to visualize the Gaussians by rendering them as ellipsoids from the floating menu.
+In addition to the initial point cloud and the splats, you also have the option to visualize the Gaussians by rendering them as ellipsoids from the floating menu.
 SIBR has many other functionalities, please see the [**documentation**](https://sibr.gitlabpages.inria.fr/) for more details on the viewer, navigation options etc. There is also a Top View (available from the menu) that shows the placement of the input cameras and the original SfM point cloud; please note that Top View slows rendering when enabled. The real-time viewer also uses slightly more aggressive, fast culling, which can be toggled in the floating menu. If you ever encounter an issue that can be solved by turning fast culling off, please let us know.
 
 <details>
@@ -338,11 +338,11 @@ SIBR has many other functionalities, please see the [**documentation**](https://
   #### --model-path / -m
   Path to trained model.
   #### --iteration
-  Specifies which of state to load if multiple are available. Defaults to latest available iteration.
+  Specifies which state to load if multiple are available. Defaults to the latest available iteration.
   #### --path / -s
   Argument to override model's path to source dataset.
   #### --rendering-size 
-  Takes two space separated numbers to define the resolution at which real-time rendering occurs, `1200` width by default. Note that to enforce an aspect that differs from the input images, you need `--force-aspect-ratio` too.
+  Takes two space-separated numbers to define the resolution at which real-time rendering occurs, `1200` width by default. Note that to enforce an aspect that differs from the input images, you need `--force-aspect-ratio` too.
   #### --load_images
   Flag to load source dataset images to be displayed in the top view for each camera.
   #### --device
@@ -353,11 +353,11 @@ SIBR has many other functionalities, please see the [**documentation**](https://
 
 ## Installing the Nerfstudio Viewer
 
-A fork form the Nerfstudio has been created that enables the viewer for 3D Gaussian Splatting. [**You can find the official fork here**]([url](https://github.com/yzslab/nerfstudio/tree/gaussian_splatting)).
+A fork from the Nerfstudio has been created that enables the viewer for 3D Gaussian Splatting. [**You can find the official fork here**]([url](https://github.com/yzslab/nerfstudio/tree/gaussian_splatting)).
 
 I created a video on how to install and run this viewer. [**View the video here**](https://github.com/yzslab/nerfstudio/tree/gaussian_splatting).
 
-Here is the instructions to follow:
+Here are the instructions to follow:
 Open Command Prompt
 
 Pull the branched fork of code. _Make sure to change your original Nerfstudio project folder so you don't modify it._
@@ -408,8 +408,8 @@ python nerfstudio/scripts/gaussian_splatting/render.py camera-path \
 
 ## Install Troubleshooting
 
-- If you encounter an error running train.py that states: `ModuleNotFoundError: No module named 'diff_gaussian_rasterization'`, this means that you had an issue during the Optimizer install process. Try [**installing the optimizer**](#installing-the-optimizer) again. Take note of any specific errors and report them in the original GitHub [**issues page**](https://github.com/graphdeco-inria/gaussian-splatting/issues)
-- If it still doesn't work. Most likely the It says something about cl.exe missing. You can you try adding the visual studio path to your environment variables (your version number might differ); `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64` Then make sure you start a new conda prompt and cd to your repo location and try this;
+- If you encounter an error running train.py that states: `ModuleNotFoundError: No module named 'diff_gaussian_rasterization'`, this means that you had an issue during the Optimizer installing process. Try [**installing the optimizer**](#installing-the-optimizer) again. Take note of any specific errors and report them on the original GitHub [**issues page**](https://github.com/graphdeco-inria/gaussian-splatting/issues)
+- If it still doesn't work. Most likely it says something about cl.exe missing. You can try adding the Visual Studio path to your environment variables (your version number might differ); `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64` Then make sure you start a new conda prompt and cd to your repo location and try this;
 
 ```shell
 conda activate gaussian_splatting
@@ -429,9 +429,9 @@ I will make a tutorial video soon on how to troubleshoot common installation pro
 | ![Default learning rate result](assets/worse.png "title-1") <!-- --> | <!-- --> ![Reduced learning rate result](assets/better.png "title-2") |
 | --- | --- |
 
-- *I don't have 24 GB of VRAM for training, what do I do?* The VRAM consumption is determined by the number of points that are being optimized, which increases over time. If you only want to train to 7k iterations, you will need significantly less. To do the full training routine and avoid running out of memory, you can increase the `--densify_grad_threshold`, `--densification_interval` or reduce the value of `--densify_until_iter`. Note however that this will affect the quality of the result. Also try setting `--test_iterations` to `-1` to avoid memory spikes during testing. If `--densify_grad_threshold` is very high, no densification should occur and training should complete if the scene itself loads successfully.
+- *I don't have 24 GB of VRAM for training, what do I do?* The VRAM consumption is determined by the number of points that are being optimized, which increases over time. If you only want to train to 7k iterations, you will need significantly less. To do the full training routine and avoid running out of memory, you can increase the `--densify_grad_threshold`, `--densification_interval` or reduce the value of `--densify_until_iter`. Note however that this will affect the quality of the result. Also, try setting `--test_iterations` to `-1` to avoid memory spikes during testing. If `--densify_grad_threshold` is very high, no densification should occur and training should be completed if the scene itself loads successfully.
 
-- *24 GB of VRAM for reference quality training is still a lot! Can't we do it with less?* Yes, most likely. By our calculations it should be possible with **way** less memory (~8GB). If we can find the time we will try to achieve this. If some PyTorch veteran out there wants to tackle this, we look forward to your pull request!
+- *24 GB of VRAM for reference quality training is still a lot! Can't we do it with less?* Yes, most likely. By our calculations, it should be possible with **way** less memory (~8GB). If we can find the time we will try to achieve this. If some PyTorch veteran out there wants to tackle this, we look forward to your pull request!
 
 
 - *How can I use the differentiable Gaussian rasterizer for my own project?* Easy, it is included in this repo as a submodule `diff-gaussian-rasterization`. Feel free to check out and install the package. It's not really documented, but using it from the Python side is very straightforward (cf. `gaussian_renderer/__init__.py`).
