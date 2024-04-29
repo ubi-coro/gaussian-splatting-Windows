@@ -53,7 +53,6 @@ Abstract: *Radiance Field methods have recently revolutionized novel-view synthe
   </div>
 </section>
 
-
 ## Funding and Acknowledgments
 
 This research was funded by the ERC Advanced grant FUNGRAPH No 788065. The authors are grateful to Adobe for generous donations, the OPAL infrastructure from Université Côte d’Azur and the HPC resources from GENCI–IDRIS (Grant 2022-AD011013409). The authors thank the anonymous reviewers for their valuable feedback, P. Hedman and A. Tewari for proofreading earlier drafts also T. Müller, A. Yu and S. Fridovich-Keil for helping with the comparisons.
@@ -84,10 +83,10 @@ This is the hardware and software required to run 3D Gaussian Splatting for Real
 
 This is the sofware dependencies you will need installed prior to installing the project. Many of these dependencies are shared with other NeRF projects.
 
-- **Git** - You will need this to pull the code from GitHub. You can download it [**here**](https://git-scm.com/downloads). Follow default installation instructions. You can test to see if you have it already installed by typing ```git --version``` into command prompt
+- **Git** - You will need this to pull the code from GitHub. You can download it [**here**](https://git-scm.com/downloads). Follow default installation instructions. You can test to see if you have it already installed by typing `git --version` into command prompt
 - **Conda** - I recommend using [**Anaconda**](https://www.anaconda.com/download) because it's easy to install and manage environments in the future. [**MiniConda**](https://docs.conda.io/en/latest/miniconda.html) is a great lightweight alternative.
-- **CUDA Toolkit** - this was tested with 11.8. Ensure you are not running 11.6 or 12+. You can download CUDA Toolkit [**here**](https://developer.nvidia.com/cuda-toolkit-archive) You can check which version of CUDA Toolkit you have installed by typing ```nvcc --version``` into command prompt.
-- **Visual Studio 2019 or newer** - You can download and install it [**here**](https://visualstudio.microsoft.com/vs/older-downloads/). Make sure you add __Desktop Development with C++** when installing <br>
+- **CUDA Toolkit** - this was tested with 11.8. Ensure you are not running 11.6 or 12+. You can download CUDA Toolkit [**here**](https://developer.nvidia.com/cuda-toolkit-archive) You can check which version of CUDA Toolkit you have installed by typing `nvcc --version` into command prompt.
+- **Visual Studio 2019 or newer** - You can download and install it [**here**](https://visualstudio.microsoft.com/vs/older-downloads/). Make sure you add __Desktop Development with C++** when installing
 
   ![VS_Option](assets/VS_Option.png)
 
@@ -103,7 +102,7 @@ You will need to pull a copy of the code from GitHub. You will do this by using 
 1. Open Windows Command Prompt by tying "cmd" into your search bar.
 2. Copy the code below into command prompt and press enter
 
-```
+```shell
 git clone https://github.com/graphdeco-inria/gaussian-splatting --recursive
 ```
 
@@ -209,13 +208,10 @@ python convert.py -s <path> --skip_matching [--resize --no_gpu]
   #### --magick_executable
   Path to the ImageMagick executable.
 </details>
-<br>
-
 
 ## Optimizer
 
 The optimizer uses PyTorch and CUDA extensions in a Python environment to produce trained models. These trained models are what you view in the real-time viewer. This is where you "processes your dataset" into 3D Guassian Splats.
-
 
 ### Running
 
@@ -299,17 +295,14 @@ python train.py -s <path to COLMAP or NeRF Synthetic dataset>
   #### --percent_dense
   Percentage of scene extent (0--1) a point must exceed to be forcibly densified, `0.01` by default.
 </details>
-<br>
 
 Note that similar to MipNeRF360, we target images at resolutions in the 1-1.6K pixel range. For convenience, arbitrary-size inputs can be passed and will be automatically resized if their width exceeds 1600 pixels. We recommend to keep this behavior, but you may force training to use your higher-resolution images by setting `-r 1`.
 
-The MipNeRF360 scenes are hosted by the paper authors [**here**](https://jonbarron.info/mipnerf360/). You can find our SfM data sets for Tanks&Temples and Deep Blending [**here**](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/input/tandt_db.zip). If you do not provide an output model directory (```-m```), trained models are written to folders with randomized unique names inside the `output` directory. At this point, the trained models may be viewed with the real-time viewer (see further below).
-
+The MipNeRF360 scenes are hosted by the paper authors [**here**](https://jonbarron.info/mipnerf360/). You can find our SfM data sets for Tanks&Temples and Deep Blending [**here**](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/input/tandt_db.zip). If you do not provide an output model directory (`-m`), trained models are written to folders with randomized unique names inside the `output` directory. At this point, the trained models may be viewed with the real-time viewer (see further below).
 
 ## Interactive Viewers
 
 We provide two interactive viewers for our method: remote and real-time. Our viewing solutions are based on the [**SIBR**](https://sibr.gitlabpages.inria.fr/) framework, developed by the GRAPHDECO group for several novel-view synthesis projects.
-
 
 ### Pre-built Windows Binaries
 
@@ -317,15 +310,15 @@ We provide pre-built binaries for Windows [**here**](https://repo-sam.inria.fr/f
 
 Simply download the `viewer.zip` file from the links above and extract it.
 
-
 ### Navigation in SIBR Viewers
-The SIBR interface provides several methods of navigating the scene. By default, you will be started with an FPS navigator, which you can control with ```W, A, S, D, Q, E``` for camera translation and ```I, K, J, L, U, O``` for rotation. Alternatively, you may want to use a Trackball-style navigator (select from the floating menu). You can also snap to a camera from the data set with the ```Snap to``` button or find the closest camera with ```Snap to closest```. The floating menues also allow you to change the navigation speed. You can use the ```Scaling Modifier``` to control the size of the displayed Gaussians, or show the initial point cloud.
+The SIBR interface provides several methods of navigating the scene. By default, you will be started with an FPS navigator, which you can control with `W, A, S, D, Q, E` for camera translation and `I, K, J, L, U, O` for rotation. Alternatively, you may want to use a Trackball-style navigator (select from the floating menu). You can also snap to a camera from the data set with the `Snap to` button or find the closest camera with `Snap to closest`. The floating menues also allow you to change the navigation speed. You can use the `Scaling Modifier` to control the size of the displayed Gaussians, or show the initial point cloud.
 
 ### Running the Real-Time Viewer
 
 <video src="https://github.com/graphdeco-inria/gaussian-splatting/assets/40643808/0940547f-1d82-4c2f-a616-44eabbf0f816" controls allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></video>
 
-After extracting or installing the viewers, you may run the compiled ```SIBR_gaussianViewer_app[_config]``` app in ```<SIBR install dir>/bin```, e.g.: 
+After extracting or installing the viewers, you may run the compiled `SIBR_gaussianViewer_app[_config]` app in `<SIBR install dir>/bin`, e.g.: 
+
 ```shell
 ./<SIBR install dir>/bin/SIBR_gaussianViewer_app -m <path to trained model>
 ```
@@ -357,7 +350,6 @@ SIBR has many other functionalities, please see the [**documentation**](https://
   #### --no_interop
   Disables CUDA/GL interop forcibly. Use on systems that may not behave according to spec (e.g., WSL2 with MESA GL 4.5 software rendering).
 </details>
-<br>
 
 ## Installing the Nerfstudio Viewer
 
@@ -370,25 +362,25 @@ Open Command Prompt
 
 Pull the branched fork of code. _Make sure to change your original Nerfstudio project folder so you don't modify it._
 
-```
+```shell
 git clone -b gaussian_splatting --recursive https://github.com/yzslab/nerfstudio.git
 ```
 
 Activate your Nerfstudio Conda Environment
 
-```
+```shell
 conda activate nerfstudio
 ```
 
 Change directory to nerfstudio
 
-```
+```shell
 cd nerfstudio
 ```
 
 Install plyfile
 
-```
+```shell
 pip install plyfile==0.8.1
 ```
 
@@ -401,7 +393,7 @@ pip install ./submodules/simple-knn
 
 Launch the viewer
 
-```
+```shell
 python nerfstudio/scripts/gaussian_splatting/run_viewer.py --model-path GAUSSIAN_TRAINING_OUTPUT_MODEL_DIR
 ```
 
@@ -416,7 +408,7 @@ python nerfstudio/scripts/gaussian_splatting/render.py camera-path \
 
 ## Install Troubleshooting
 
-- If you encounter an error running train.py that states: ```ModuleNotFoundError: No module named 'diff_gaussian_rasterization'```, this means that you had an issue during the Optimizer install process. Try [**installing the optimizer**](#installing-the-optimizer) again. Take note of any specific errors and report them in the original GitHub [**issues page**](https://github.com/graphdeco-inria/gaussian-splatting/issues)
+- If you encounter an error running train.py that states: `ModuleNotFoundError: No module named 'diff_gaussian_rasterization'`, this means that you had an issue during the Optimizer install process. Try [**installing the optimizer**](#installing-the-optimizer) again. Take note of any specific errors and report them in the original GitHub [**issues page**](https://github.com/graphdeco-inria/gaussian-splatting/issues)
 - If it still doesn't work. Most likely the It says something about cl.exe missing. You can you try adding the visual studio path to your environment variables (your version number might differ); `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64` Then make sure you start a new conda prompt and cd to your repo location and try this;
 
 ```shell
@@ -430,7 +422,7 @@ I will make a tutorial video soon on how to troubleshoot common installation pro
 
 ## FAQ
 
-- *Where do I get data sets, e.g., those referenced in ```full_eval.py```?* The MipNeRF360 data set is provided by the authors of the original paper on the project site. Note that two of the data sets cannot be openly shared and require you to consult the authors directly. For Tanks&Temples and Deep Blending, please use the download links provided at the top of the page.
+- *Where do I get data sets, e.g., those referenced in `full_eval.py`?* The MipNeRF360 data set is provided by the authors of the original paper on the project site. Note that two of the data sets cannot be openly shared and require you to consult the authors directly. For Tanks&Temples and Deep Blending, please use the download links provided at the top of the page.
 
 - *How can I use this for a much larger dataset, like a city district?* The current method was not designed for these, but given enough memory, it should work out. However, the approach can struggle in multi-scale detail scenes (extreme close-ups, mixed with far-away shots). This is usually the case in, e.g., driving data sets (cars close up, buildings far away). For such scenes, you can lower the `--position_lr_init`, `--position_lr_final` and `--scaling_lr` (x0.3, x0.1, ...). The more extensive the scene, the lower these values should be. Below, we use default learning rates (left) and `--position_lr_init 0.000016 --scaling_lr 0.001"` (right).
 
