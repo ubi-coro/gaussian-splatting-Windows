@@ -86,7 +86,7 @@ This is the sofware dependencies you will need installed prior to installing the
 - **Git** - You will need this to pull the code from GitHub. You can download it [**here**](https://git-scm.com/downloads). Follow default installation instructions. You can test to see if you have it already installed by typing `git --version` into command prompt
 - **Conda** - I recommend using [**Anaconda**](https://www.anaconda.com/download) because it's easy to install and manage environments in the future. [**MiniConda**](https://docs.conda.io/en/latest/miniconda.html) is a great lightweight alternative.
 - **CUDA Toolkit** - this was tested with 11.8. Ensure you are not running 11.6 or 12+. You can download CUDA Toolkit [**here**](https://developer.nvidia.com/cuda-toolkit-archive) You can check which version of CUDA Toolkit you have installed by typing `nvcc --version` into command prompt.
-- **Visual Studio 2019 or newer** - You can download and install it [**here**](https://visualstudio.microsoft.com/vs/older-downloads/). Make sure you add __Desktop Development with C++** when installing
+- **Visual Studio 2019 or newer** - You can download and install it [**here**](https://visualstudio.microsoft.com/vs/older-downloads/). Make sure you add **Desktop Development with C++** when installing
 
   ![VS_Option](assets/VS_Option.png)
 
